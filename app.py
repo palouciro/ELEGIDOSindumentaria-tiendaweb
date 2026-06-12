@@ -18,7 +18,6 @@ elif DATABASE_URL.startswith('postgresql://'):
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
 # ── MODELOS ──────────────────────────────────────────────
 class Producto(db.Model):
     __tablename__ = 'productos'
