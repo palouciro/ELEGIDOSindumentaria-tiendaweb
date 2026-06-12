@@ -1,5 +1,5 @@
 import os, json
-from flask import Flask, request, jsonify, render_template, session
+from flask import Flask, request, jsonify, render_template, session, send_from_directory
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import Text, Numeric, Boolean
@@ -106,7 +106,8 @@ def init_db():
 # ── PÁGINA PRINCIPAL ─────────────────────────────────────
 @app.route('/')
 def index():
-    return render_template('index.html')
+    template_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
+    return send_from_directory(template_dir, 'index.html')
 
 # ── ADMIN AUTH ───────────────────────────────────────────
 @app.route('/api/admin/login', methods=['POST'])
