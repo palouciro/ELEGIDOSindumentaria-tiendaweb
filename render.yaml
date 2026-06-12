@@ -2,7 +2,7 @@ services:
   - type: web
     name: elegidos-indumentaria
     env: python
-    buildCommand: pip install -r requirements.txt && python -c "from app import init_db; init_db()"
+    buildCommand: pip install -r requirements.txt
     startCommand: gunicorn app:app
     envVars:
       - key: SECRET_KEY
