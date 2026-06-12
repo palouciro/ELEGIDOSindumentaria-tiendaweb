@@ -10,13 +10,11 @@ app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'elegidos-secret-2024')
 CORS(app, supports_credentials=True)
 
-# SQLite para local, PostgreSQL para Railway/Render
 DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:///elegidos.db')
 if DATABASE_URL.startswith('postgres://'):
     DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql+psycopg://', 1)
 elif DATABASE_URL.startswith('postgresql://'):
     DATABASE_URL = DATABASE_URL.replace('postgresql://', 'postgresql+psycopg://', 1)
-
 app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
