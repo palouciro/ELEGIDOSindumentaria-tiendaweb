@@ -11,11 +11,13 @@ app.secret_key = os.environ.get('SECRET_KEY', 'elegidos-secret-2024')
 CORS(app, supports_credentials=True)
 
 DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:///elegidos.db')
-DATABASE_URL = os.environ.get('DATABASE_URL', 'sqlite:///elegidos.db')
 if DATABASE_URL.startswith('postgres://'):
     DATABASE_URL = DATABASE_URL.replace('postgres://', 'postgresql://', 1)
+
+app.config['SQLALCHEMY_DATABASE_URI'] = DATABASE_URL
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
+
 # ── MODELOS ──────────────────────────────────────────────
 class Producto(db.Model):
     __tablename__ = 'productos'
